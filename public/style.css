@@ -1,0 +1,9 @@
+h1 {
+  color: blueviolet;
+  border-bottom: 2px solid green;
+}
+
+p {
+  font-size: larger;
+  line-height: 2.5;
+}
