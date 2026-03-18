@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 app2.use(express.static(path.join(__dirname, "public")));
 app2.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -16,7 +17,7 @@ console.log("full File Path:", __filename);
 console.log("Dirname : ", __dirname);
 
 app2.get("/product", (req, res) => {
-  const { name, brand } = req.query.search;
+  const { name, brand } = req.query;
   console.log(req.query);
   res.send(`Searching for student : ${name} , and the brand is ${brand}`);
 });
