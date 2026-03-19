@@ -8,14 +8,9 @@ const port = 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 1. Correctly point to the 'public' folder
 app.use(express.static(path.join(__dirname, "public")));
 
-// 2. Middleware for POST data
 app.use(express.urlencoded({ extended: true }));
-
-// NOTE: You can REMOVE the app.get('/') block entirely.
-// express.static automatically serves index.html from the public folder.
 
 app.get("/submit-get", (req, res) => {
   res.send(`GET Received! Hello, ${req.query.username}`);
@@ -24,6 +19,12 @@ app.get("/submit-get", (req, res) => {
 app.post("/submit-post", (req, res) => {
   console.log(req.body);
   res.send(`POST Received! Hello, ${req.body.username}`);
+});
+
+app.use((req, res) => {
+  return res
+    .status(404)
+    .sendFile(path.join(import.meta.dirname, "views", "404.html"));
 });
 
 app.listen(port, () => {
